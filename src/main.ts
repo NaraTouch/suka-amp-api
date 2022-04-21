@@ -1,4 +1,6 @@
 import { NestFactory } from '@nestjs/core';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 import { AppModule } from './app.module';
 import { ValidateInputPipe } from './core/pipes/validate.pipe';
@@ -8,6 +10,6 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
   // handle all user input validation globally
   app.useGlobalPipes(new ValidateInputPipe());
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
